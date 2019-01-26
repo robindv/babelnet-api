@@ -10,6 +10,10 @@ Compileren
 ----------
 `mvn compile`
 
+Testen of de offline indices werken
+------------------------------------
+`mvn test`
+
 Starten van de webserver
 ------------------------
 `mvn exec:java -Dexec.mainClass="nl.celp.App"`

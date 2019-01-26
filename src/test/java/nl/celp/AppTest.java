@@ -4,6 +4,11 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import it.uniroma1.lcl.babelnet.BabelNet;
+import it.uniroma1.lcl.babelnet.BabelSynset;
+import it.uniroma1.lcl.babelnet.BabelSynsetID;
+
+
 /**
  * Unit test for simple App.
  */
@@ -33,6 +38,10 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+        BabelNet bn = BabelNet.getInstance();
+        BabelSynset synset = bn.getSynset(new BabelSynsetID("bn:00049246n"));
+
+        assertEquals("kit_fox", synset.getMainSense().get().getFullLemma());
+        assertEquals("Small grey fox of the plains of western North America", synset.getMainGloss().get().getGloss());
     }
 }
