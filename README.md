@@ -16,4 +16,4 @@ Testen of de offline indices werken
 
 Starten van de webserver
 ------------------------
-`mvn exec:java -Dexec.mainClass="nl.celp.App"`
+`mvn exec:java -Dexec.mainClass="nl.celp.App"` of start `./run.sh`
