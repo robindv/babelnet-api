@@ -37,36 +37,6 @@ public class App extends NanoHTTPD {
 
         bn = BabelNet.getInstance();
         
-        // BabelSynset bla = bn.getSynset(new BabelSynsetID("bn:00049246n"));
-
-        // JSONArray array = new JSONArray();
-        // for(BabelSynsetRelation edge : bla.getOutgoingEdges()) {
-        //     JSONObject relation = new JSONObject();
-
-        //     relation.put("language", edge.getLanguage());
-        //     relation.put("target", edge.getTarget());
-        //     relation.put("weight", edge.getWeight());
-        //     relation.put("normalizedWeight", edge.getNormalizedWeight());
-
-        //     BabelPointer ptr = edge.getPointer();
-        //     JSONObject pointer = new  JSONObject();
-        //     pointer.put("fSymbol", ptr.getSymbol());
-        //     pointer.put("name", ptr.getName());
-        //     pointer.put("shortname", ptr.getShortName());
-        //     pointer.put("relationGroup", ptr.getRelationGroup());
-        //     pointer.put("isAutomatic", ptr.isAutomatic());
-        //     relation.put("pointer", pointer);
-        //     array.put(relation);
-
-        //     break;
-        // }
-
-        // System.out.println(array);
-
-	    // for(WordNetSynsetID id : bla.getWordNetOffsets()) {
-	    // 	System.out.println(id.getID());
-	    // }
-
         try {
             new App();
         } catch (IOException ioe) {
