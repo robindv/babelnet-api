@@ -16,6 +16,7 @@ import it.uniroma1.lcl.babelnet.BabelSynsetID;
 import it.uniroma1.lcl.babelnet.BabelSynsetRelation;
 import it.uniroma1.lcl.babelnet.WordNetSense;
 import it.uniroma1.lcl.babelnet.WordNetSynsetID;
+import it.uniroma1.lcl.babelnet.data.BabelGloss;
 import it.uniroma1.lcl.babelnet.data.BabelImage;
 import it.uniroma1.lcl.babelnet.data.BabelLemma;
 import it.uniroma1.lcl.babelnet.data.BabelPointer;
@@ -147,6 +148,17 @@ public class App extends NanoHTTPD {
             jimages.put(jimage);
         }
         jobject.put("images", jimages);
+
+        JSONArray jglosses = new JSONArray();
+        for(BabelGloss gloss : synset.getGlosses(Language.EN)) {
+            JSONObject jgloss = new JSONObject();
+            jgloss.put("source", gloss.getSource());
+            jgloss.put("gloss", gloss.getGloss());
+            jgloss.put("sourceSense", gloss.getSourceSense());
+
+            jglosses.put(jgloss);
+        }
+        jobject.put("glosses", jglosses);
 
         return newFixedLengthResponse(Response.Status.OK, "application/json", jobject.toString());
     }
