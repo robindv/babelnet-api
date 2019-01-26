@@ -37,7 +37,7 @@ public class App extends NanoHTTPD {
     public static void main(String[] args) {
 
         bn = BabelNet.getInstance();
-        
+         
         try {
             new App();
         } catch (IOException ioe) {
@@ -168,11 +168,18 @@ public class App extends NanoHTTPD {
       
         String uri = session.getUri();
 
-        if(uri.equals("/getOutgoingEdges"))
-            return getOutgoingEdges(session);
+        try {
+            if(uri.equals("/getOutgoingEdges"))
+                return getOutgoingEdges(session);
 
-        if(uri.equals("/getSynset"))
-            return getSynset(session);
+            if(uri.equals("/getSynset"))
+                return getSynset(session);
+            }
+        catch(Exception exception)
+        {
+            exception.printStackTrace();
+            return newFixedLengthResponse(Response.Status.INTERNAL_ERROR, "text/plain", exception.toString());
+        }
 
         return newFixedLengthResponse("Geef een url op!");
     }
