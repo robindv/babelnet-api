@@ -79,7 +79,18 @@ public class App extends NanoHTTPD {
     {
         Map<String, String> parms = session.getParms();
         String synsetid = parms.get("id");
-        BabelSynset synset = bn.getSynset(new BabelSynsetID(synsetid));
+
+        if(synsetid == null)
+            return newFixedLengthResponse(Response.Status.NOT_FOUND, "text/plain", ":-(");
+
+        BabelSynset synset;
+        if(synsetid.startsWith("bn:"))
+            synset = bn.getSynset(new BabelSynsetID(synsetid));
+        else if(synsetid.startsWith("wn:"))
+            synset = bn.getSynset(new WordNetSynsetID(synsetid));
+        else
+            return newFixedLengthResponse(Response.Status.NOT_FOUND, "text/plain", ":-(");
+
         JSONObject jobject = new JSONObject();
 
         JSONArray senses = new JSONArray();
