@@ -66,7 +66,7 @@ public class App extends NanoHTTPD {
             JSONObject pointer = new  JSONObject();
             pointer.put("fSymbol", ptr.getSymbol());
             pointer.put("name", ptr.getName());
-            pointer.put("shortname", ptr.getShortName());
+            pointer.put("shortName", ptr.getShortName());
             pointer.put("relationGroup", ptr.getRelationGroup());
             pointer.put("isAutomatic", ptr.isAutomatic());
             relation.put("pointer", pointer);
