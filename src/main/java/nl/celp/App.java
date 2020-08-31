@@ -29,7 +29,7 @@ public class App extends NanoHTTPD {
     public App() throws IOException {
         super(8080);
         start(NanoHTTPD.SOCKET_READ_TIMEOUT, false);
-        System.out.println("\nRunning! Point your browsers to http://localhost:8080/ \n");
+        System.out.println("\nRunning! Point your browser to http://localhost:8080/ \n");
     }
 
     static BabelNet bn;
@@ -150,10 +150,12 @@ public class App extends NanoHTTPD {
         jobject.put("images", jimages);
 
         JSONArray jglosses = new JSONArray();
-        for(BabelGloss gloss : synset.getGlosses(Language.EN)) {
+        //for(BabelGloss gloss : synset.getGlosses(Language.EN)) {
+        for(BabelGloss gloss : synset.getGlosses()) {
             JSONObject jgloss = new JSONObject();
             jgloss.put("source", gloss.getSource());
             jgloss.put("gloss", gloss.getGloss());
+            jgloss.put("language", gloss.getLanguage());
             jgloss.put("sourceSense", gloss.getSourceSense());
 
             jglosses.put(jgloss);
@@ -181,6 +183,6 @@ public class App extends NanoHTTPD {
             return newFixedLengthResponse(Response.Status.INTERNAL_ERROR, "text/plain", exception.toString());
         }
 
-        return newFixedLengthResponse("Geef een url op!");
+        return newFixedLengthResponse("URL invalid!");
     }
 }
